@@ -6,7 +6,6 @@ import 'package:flutter_multi_language/apps_page.dart';
 import 'package:flutter_multi_language/index_page.dart';
 import 'package:flutter_multi_language/mine_page.dart';
 
-// 配置国际化
 void main() => runApp(EasyLocalization(child: MyApp()));
 
 class MyApp extends StatelessWidget {
@@ -16,14 +15,13 @@ class MyApp extends StatelessWidget {
     return EasyLocalizationProvider(
       data: data,
       child: MaterialApp(
+        title: 'Flutter Demo',
         localizationsDelegates: [
           GlobalMaterialLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,
           EasylocaLizationDelegate(
             locale: data.locale,
-            path: 'assets/langs',
-//            useOnlyLangCode: true,
-//            loadPath: 'https://raw.githubusercontent.com/aissat/easy_localization/master/example/resources/langs'
+            path: 'assets/langs', // 多语言路径
           ),
         ],
         supportedLocales: [Locale('en', 'US'), Locale('zh', 'CN')],

@@ -6,7 +6,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
     
-  easy_localization: ^1.3.1
+  easy_localization: ^3.0.0
 ```
 
 ## 添加多语言json文件
@@ -19,42 +19,39 @@ dependencies:
 
 ## 在main中添加
 ```dart
-void main() => runApp(EasyLocalization(child: MyApp()));
+WidgetsFlutterBinding.ensureInitialized();
+await EasyLocalization.ensureInitialized();
+runApp(
+   EasyLocalization(
+     supportedLocales: [Locale('en', 'US'), Locale('zh', 'CN')],
+     path: 'assets/langs',
+     fallbackLocale: Locale('en', 'US'),
+     child: MyApp(),
+   ),
+ );
 ```
 
 ## 在MaterialApp中添加
 ```dart
-var data = EasyLocalizationProvider.of(context).data;
-return EasyLocalizationProvider(
-  data: data,
-  child: MaterialApp(
-  title: 'Flutter Demo',
-  localizationsDelegates: [
-    GlobalMaterialLocalizations.delegate,
-    GlobalWidgetsLocalizations.delegate,
-    EasylocaLizationDelegate(
-      locale: data.locale,
-      path: 'assets/langs', // 多语言路径
-    ),
-  ],
-  supportedLocales: [Locale('en', 'US'), Locale('zh', 'CN')],
-  locale: data.savedLocale,
-  theme: ThemeData(
-    primarySwatch: Colors.blue,
-   ),
-  home: MyHomePage(),
-  ),
-);
+MaterialApp(
+      title: 'Flutter Demo',
+      localizationsDelegates: context.localizationDelegates,
+      supportedLocales: context.supportedLocales,
+      locale: context.locale,
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: MyHomePage(),
+    );
 ```
 
 ## 使用
 ```dart
-Text(AppLocalizations.of(context).tr('title'))
+Text('title').tr()
 ```
 
 ## 切换语言
 ```dart
-var data = EasyLocalizationProvider.of(context).data;
-data.changeLocale(Locale("zh", "CN"));
+context.setLocale(Locale("zh", "CN"));
 ```
 

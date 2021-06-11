@@ -10,12 +10,8 @@ class _IndexPageState extends State<IndexPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(AppLocalizations.of(context).tr('tab_one')),
-      ),
-      body: Center(
-        child: Text(AppLocalizations.of(context).tr('tab_one')),
-      ),
+      appBar: AppBar(title: Text('tab_one').tr()),
+      body: Center(child: Text('tab_one').tr()),
     );
   }
 }

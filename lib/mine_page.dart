@@ -12,14 +12,14 @@ class _MinePageState extends State<MinePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(AppLocalizations.of(context).tr('tab_three')),
+        title: Text('tab_three').tr(),
       ),
       body: Center(
-        child: RaisedButton(
+        child: ElevatedButton(
           onPressed: () {
             Navigator.push(context, CupertinoPageRoute(builder: (_) => ChangeLanguagePage()));
           },
-          child: Text(AppLocalizations.of(context).tr('change_lang')),
+          child: Text('change_lang').tr(),
         ),
       ),
     );
@@ -34,30 +34,22 @@ class ChangeLanguagePage extends StatefulWidget {
 class _ChangeLanguagePageState extends State<ChangeLanguagePage> {
   @override
   Widget build(BuildContext context) {
-    var data = EasyLocalizationProvider.of(context).data;
     return Scaffold(
-      appBar: AppBar(
-        title: Text(AppLocalizations.of(context).tr('change_lang')),
-      ),
+      appBar: AppBar(title: Text('change_lang').tr()),
       body: Center(
         child: Column(
           children: <Widget>[
-            RaisedButton(
+            ElevatedButton(
               onPressed: () {
-                // 切换语言
-//                this.setState(() {
-                data.changeLocale(Locale("zh", "CN"));
-//                });
+                context.setLocale(Locale("zh", "CN"));
               },
-              child: Text(AppLocalizations.of(context).tr('lang_zh')),
+              child: Text('lang_zh').tr(),
             ),
-            RaisedButton(
+            ElevatedButton(
               onPressed: () {
-//                this.setState(() {
-                data.changeLocale(Locale("en", "US"));
-//                });
+                context.setLocale(Locale("en", "US"));
               },
-              child: Text(AppLocalizations.of(context).tr('lang_en')),
+              child: Text('lang_en').tr(),
             ),
           ],
         ),

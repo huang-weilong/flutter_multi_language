@@ -10,8 +10,8 @@ class _AppsPageState extends State<AppsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(AppLocalizations.of(context).tr('tab_two'))),
-      body: Center(child: Text(AppLocalizations.of(context).tr('tab_two'))),
+      appBar: AppBar(title: Text('tab_two').tr()),
+      body: Center(child: Text('tab_two').tr()),
     );
   }
 }
